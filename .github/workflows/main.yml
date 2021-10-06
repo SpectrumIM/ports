@@ -1,0 +1,27 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  macos:
+    runs-on: macOS-11.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install MacPorts
+      run: |
+        curl -L -O "https://github.com/macports/macports-base/releases/download/v2.7.1/MacPorts-2.7.1-11-BigSur.pkg"
+        sudo installer -store -pkg MacPorts-2.7.1-11-BigSur.pkg -target /
+        echo "file://$PWD [nosync]" | sudo tee -a /opt/local/etc/macports/sources.conf
+    - name: Make packages
+      run: |
+        export PATH=$PATH:/opt/local/bin
+        sudo rm -rf /usr/local/*
+        sudo portindex
+        sudo port -v selfupdate && sudo port pkg libswiften
+    - name: Save working directory
+      run: echo "workdir=$(port work libswiften)" >> $GITHUB_ENV
+    - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ env.workdir }}/libswiften-4.0.pkg
