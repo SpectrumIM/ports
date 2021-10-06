@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                libswiften
+version             4.0
+platforms           darwin
+homepage            https://swift.im/swiften.html
+master_sites        https://swift.im/downloads/releases/swift-${version}/
+distname            swift-${version}
+checksums           sha256  50b7b2069005b1474147110956f66fdde0afb2cbcca3d3cf47de56dc61217319 \
+                    rmd160  414ca09be617e12dc02bec89177b742e1e6c3670 \
+                    size    19081157
+
+
+depends_build       port:scons
+
+depends_lib         port:boost \
+                    port:libidn \
+                    port:miniupnpc
+
+patch.pre_args      -p1
+patchfiles          patch-endianess.diff \
+                    patch-tribool.diff
+use_configure       no
+build.cmd           scons
+build.target
+build.args          Swiften swiften_dll=1 debug=no optimize=yes boost_includedir=${prefix}/include boost_libdir=${prefix}/lib libidn_includedir=${prefix}/include libidn_libdir=${prefix}/lib libminiupnpc_includedir=${prefix}/include/miniupnpc libminiupnpc_libdir=${prefix}/lib SWIFTEN_INSTALLDIR=${destroot}${prefix}
+
+destroot.target
+destroot.args           {*}${build.args}
+destroot.destdir        ${destroot}${prefix}
