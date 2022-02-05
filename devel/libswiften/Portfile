@@ -7,7 +7,7 @@ version             4.0.3
 platforms           darwin
 homepage            https://swift.im/swiften.html
 master_sites        https://packages.spectrum.im/
-distname            swift-im_${version}+dev10
+distname            swift-im-${version}+dev10
 checksums           sha256  b664722f2e35e06f08433bd81454fdde986db993b63299a9e25c5db4fc1a28ea \
                     size    8605728
 
