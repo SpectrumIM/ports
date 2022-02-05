@@ -3,14 +3,13 @@
 PortSystem          1.0
 
 name                libswiften
-version             4.0
+version             4.0.3
 platforms           darwin
 homepage            https://swift.im/swiften.html
 master_sites        https://packages.spectrum.im/
 distname            swift-im_${version}+dev10.orig
-checksums           sha256  50b7b2069005b1474147110956f66fdde0afb2cbcca3d3cf47de56dc61217319 \
-                    rmd160  414ca09be617e12dc02bec89177b742e1e6c3670 \
-                    size    19081157
+checksums           sha256  43c680fce89d22445d3b1b9ecb07975aea04004de9e1612840b25f30a4893f7b \
+                    size    8582396
 
 
 depends_build       port:scons
