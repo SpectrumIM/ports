@@ -7,7 +7,7 @@ version             4.0
 platforms           darwin
 homepage            https://swift.im/swiften.html
 master_sites        https://packages.spectrum.im/
-distname            swift-im_${version}+dev10.orig.tar.gz
+distname            swift-im_${version}+dev10.orig
 checksums           sha256  50b7b2069005b1474147110956f66fdde0afb2cbcca3d3cf47de56dc61217319 \
                     rmd160  414ca09be617e12dc02bec89177b742e1e6c3670 \
                     size    19081157
@@ -19,9 +19,6 @@ depends_lib         port:boost \
                     port:libidn \
                     port:miniupnpc
 
-patch.pre_args      -p1
-patchfiles          patch-endianess.diff \
-                    patch-tribool.diff
 use_configure       no
 build.cmd           scons
 build.target
