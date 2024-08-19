@@ -12,7 +12,7 @@ checksums           sha256  b664722f2e35e06f08433bd81454fdde986db993b63299a9e25c
                     size    8605728
 
 
-depends_build       port:scons
+depends_build       port:scons3
 
 depends_lib         port:boost \
                     port:libidn
