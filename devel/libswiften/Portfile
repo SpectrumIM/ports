@@ -15,13 +15,12 @@ checksums           sha256  b664722f2e35e06f08433bd81454fdde986db993b63299a9e25c
 depends_build       port:scons
 
 depends_lib         port:boost \
-                    port:libidn \
-                    port:miniupnpc
+                    port:libidn
 
 use_configure       no
 build.cmd           scons
 build.target
-build.args          Swiften swiften_dll=1 debug=no optimize=yes boost_includedir=${prefix}/include boost_libdir=${prefix}/lib libidn_includedir=${prefix}/include libidn_libdir=${prefix}/lib libminiupnpc_includedir=${prefix}/include/miniupnpc libminiupnpc_libdir=${prefix}/lib SWIFTEN_INSTALLDIR=${destroot}${prefix}
+build.args          Swiften swiften_dll=1 debug=no optimize=yes experimental_ft=no boost_includedir=${prefix}/include boost_libdir=${prefix}/lib libidn_includedir=${prefix}/include libidn_libdir=${prefix}/lib SWIFTEN_INSTALLDIR=${destroot}${prefix}
 
 destroot.target
 destroot.args           {*}${build.args}
