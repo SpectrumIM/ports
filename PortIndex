@@ -1,0 +1,4 @@
+libswiften 224
+platforms darwin portdir devel/libswiften depends_lib {port:boost port:libidn port:miniupnpc} name libswiften version 4.0.3 homepage https://swift.im/swiften.html depends_build port:scons3 revision 0 license unknown epoch 0
+scons3 566
+portdir devel/scons3 description {A software construction tool} homepage http://www.scons.org/ epoch 0 platforms darwin name scons3 depends_lib port:python27 license MIT maintainers {{ryandesign @ryandesign} openmaintainer} long_description {SCons is an Open Source software construction tool--that is, a next-generation build tool. Think of SCons as an improved, cross-platform substitute for the classic Make utility with integrated functionality similar to autoconf/automake and compiler caches such as ccache.} version 3.1.2 categories {devel python} revision 0
