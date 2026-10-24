@@ -20,12 +20,10 @@ jobs:
         sudo rm -rf /usr/local/*
         sudo port -v selfupdate
         (cd /opt/local/var/macports/sources/github.com/SpectrumIM/ports && sudo portindex)
-        sudo port -N install libswiften
-        sudo chown -R macports /opt/local/var/macports/distfiles
-        sudo port mpkg libswiften
+        sudo port pkg libswiften
         echo "workdir=$(port work libswiften)" >> $GITHUB_ENV
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: ${{ env.workdir }}/libswiften-4.0.mpkg
+        files: ${{ env.workdir }}/libswiften-*.pkg
