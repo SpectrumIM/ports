@@ -20,6 +20,8 @@ jobs:
         sudo rm -rf /usr/local/*
         sudo port -v selfupdate
         (cd /opt/local/var/macports/sources/github.com/SpectrumIM/ports && sudo portindex)
+        sudo port -N install libswiften
+        sudo chown -R macports /opt/local/var/macports/distfiles
         sudo port mpkg libswiften
         echo "workdir=$(port work libswiften)" >> $GITHUB_ENV
     - name: Release
