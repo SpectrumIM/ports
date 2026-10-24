@@ -11,13 +11,16 @@ jobs:
       run: |
         curl -L -O "https://github.com/macports/macports-base/releases/download/v2.10.1/MacPorts-2.10.1-14-Sonoma.pkg"
         sudo installer -store -pkg MacPorts-2.10.1-14-Sonoma.pkg -target /
-        echo "file://$PWD [nosync]" | sudo tee -a /opt/local/etc/macports/sources.conf
+        sudo mkdir -p /opt/local/var/macports/sources/github.com/SpectrumIM
+        sudo cp -R . /opt/local/var/macports/sources/github.com/SpectrumIM/ports
+        echo "file:///opt/local/var/macports/sources/github.com/SpectrumIM/ports [nosync]" | sudo tee -a /opt/local/etc/macports/sources.conf
     - name: Make packages
       run: |
         export PATH=$PATH:/opt/local/bin
         sudo rm -rf /usr/local/*
-        sudo portindex
-        sudo port -v selfupdate && sudo port mpkg libswiften
+        sudo port -v selfupdate
+        (cd /opt/local/var/macports/sources/github.com/SpectrumIM/ports && sudo portindex)
+        sudo port mpkg libswiften
         echo "workdir=$(port work libswiften)" >> $GITHUB_ENV
     - name: Release
       uses: softprops/action-gh-release@v1
